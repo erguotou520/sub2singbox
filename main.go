@@ -5,6 +5,7 @@ import (
 	_ "embed"
 	"encoding/json"
 	"flag"
+	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -14,6 +15,7 @@ import (
 	"erguotou520/sub2singbox/convert"
 	"erguotou520/sub2singbox/httputils"
 	"erguotou520/sub2singbox/model/clash"
+	"erguotou520/sub2singbox/model/singbox"
 )
 
 const toolConfigPath = "sub.json"
@@ -122,17 +124,36 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+	if len(c.Proxies) > 0 {
+		for _, item := range c.Proxies {
+			tags = append(tags, item.Name)
+		}
+	}
 
 	if insecure {
 		convert.ToInsecure(&c)
 	}
 
-	// s, err := convert.Clash2sing(c)
-	// if err != nil {
-	// 	fmt.Println(err)
-	// }
+	s, err := convert.Clash2sing(c)
+	if err != nil {
+		fmt.Println(err)
+	}
 
-	outb, err := convert.Template(templateB, singList, tags)
+	for _, v := range singList {
+		// 转换为json字符串
+		jsonBytes, err := json.Marshal(v)
+		if err != nil {
+			continue
+		}
+		// 解析为SingBoxOut结构
+		var singboxOut singbox.SingBoxOut
+		if err := json.Unmarshal(jsonBytes, &singboxOut); err != nil {
+			continue
+		}
+		s = append(s, singboxOut)
+	}
+
+	outb, err := convert.Template(templateB, s, tags)
 	if err != nil {
 		panic(err)
 	}

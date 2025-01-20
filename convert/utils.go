@@ -161,7 +161,7 @@ func PatchMap(
 	return d, nil
 }
 
-func Template(templateSB []byte, singList []map[string]any, tags []string) ([]byte, error) {
+func Template(templateSB []byte, singList []singbox.SingBoxOut, tags []string) ([]byte, error) {
 	d := map[string]interface{}{}
 	err := json.Unmarshal(templateSB, &d)
 	if err != nil {
