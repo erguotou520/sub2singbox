@@ -1,4 +1,6 @@
 # sub2singbox
+（原项目 https://github.com/xmdhs/clash2singbox）
+
 用于将 clash 或者 Clash.Meta 配置文件，以及订阅链接转换为 sing-box 格式的配置文件。
 
 ## 支持协议
