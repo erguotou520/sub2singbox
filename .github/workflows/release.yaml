@@ -24,7 +24,7 @@ jobs:
           xgo_version: latest
           go_version: latest
           dest: dist
-          prefix: clash2singbox
+          prefix: sub2singbox
           targets: windows/386,windows/amd64,linux/386,linux/amd64,linux/arm,linux/arm64,darwin/arm64,darwin/amd64
           # Show less information
           v: false
@@ -37,7 +37,7 @@ jobs:
       - name: Publish GitHub Releases
         uses: softprops/action-gh-release@v1
         with:
-          name: "clash2singbox ${{ github.ref_name }}"
+          name: "sub2singbox ${{ github.ref_name }}"
           files: |
             ./dist/*
           token: ${{ secrets.GITHUB_TOKEN }}
