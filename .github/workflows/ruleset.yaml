@@ -1,0 +1,42 @@
+name: Compile Ruleset
+
+on:
+  push:
+    paths:
+      - 'ruleset/**.json'
+    branches:
+      - main
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Download sing-box
+        run: |
+          wget https://github.com/SagerNet/sing-box/releases/download/v1.11.3/sing-box-1.11.3-linux-amd64.tar.gz
+          tar xvf sing-box-1.11.3-linux-amd64.tar.gz
+
+      - name: Compile Rulesets
+        run: |
+          for json_file in ruleset/*.json; do
+            filename=$(basename "$json_file" .json)
+            ./sing-box-1.11.3-linux-amd64/sing-box rule-set compile --output "ruleset/${filename}.srs" "$json_file"
+          done
+          mkdir -p /tmp/ruleset
+          mv ruleset/*.srs /tmp/ruleset/
+
+      - name: Setup Git
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+
+      - name: Push to ruleset branch
+        run: |
+          git checkout ruleset || git checkout -b ruleset
+          rm -rf ./*
+          mv /tmp/ruleset/* .
+          git add .
+          git commit -m "chore: update compiled rulesets" || echo "No changes to commit"
+          git push -f origin ruleset
