@@ -1,4 +1,6 @@
 name: Compile Ruleset
+permissions:
+  contents: write
 
 on:
   push:
@@ -14,7 +16,15 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Cache sing-box binary
+        id: cache-singbox
+        uses: actions/cache@v3
+        with:
+          path: sing-box-1.11.3-linux-amd64
+          key: singbox-1.11.3
+
       - name: Download sing-box
+        if: steps.cache-singbox.outputs.cache-hit != 'true'
         run: |
           wget https://github.com/SagerNet/sing-box/releases/download/v1.11.3/sing-box-1.11.3-linux-amd64.tar.gz
           tar xvf sing-box-1.11.3-linux-amd64.tar.gz
