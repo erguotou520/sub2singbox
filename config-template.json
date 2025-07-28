@@ -86,7 +86,7 @@
     ],
     "rule_set": [
       { "tag": "custom-ads", "type": "remote", "format": "binary", "url": "https://proxy.fireboom.io/https://raw.githubusercontent.com/erguotou520/sub2singbox/ruleset/custom-ads.srs", "download_detour": "🎯 全球直连" },
-      { "tag": "custom-aliyun", "type": "local", "format": "source", "path": "https://proxy.fireboom.io/https://raw.githubusercontent.com/erguotou520/sub2singbox/ruleset/custom-direct.srs" },
+      { "tag": "custom-aliyun", "type": "remote", "format": "binary", "url": "https://proxy.fireboom.io/https://raw.githubusercontent.com/erguotou520/sub2singbox/ruleset/custom-direct.srs", "download_detour": "🎯 全球直连" },
       { "tag": "geosite-category-ads-all", "type": "remote", "format": "binary", "url": "https://proxy.fireboom.io/https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-category-ads-all.srs", "download_detour": "🎯 全球直连" },
       { "tag": "geosite-ai-!cn", "type": "remote", "format": "binary", "url": "https://proxy.fireboom.io/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/category-ai-!cn.srs", "download_detour": "🎯 全球直连" },
       { "tag": "geosite-youtube", "type": "remote", "format": "binary", "url": "https://proxy.fireboom.io/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/youtube.srs", "download_detour": "🎯 全球直连" },
