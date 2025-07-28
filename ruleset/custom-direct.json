@@ -1,9 +1,13 @@
 {
   "version": 1,
   "rules": [
-    "proxy.mmstat.com",
-    "alicdn.com",
-    "alibaba.com",
-    "aliyuncs.com"
+    {
+      "domain_suffix": [
+        "proxy.mmstat.com",
+        "alicdn.com",
+        "alibaba.com",
+        "aliyuncs.com"
+      ]
+    }
   ]
 }
