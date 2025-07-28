@@ -1,4 +1,9 @@
 {
   "version": 1,
-  "rules": []
+  "rules": [
+    "proxy.mmstat.com",
+    "alicdn.com",
+    "alibaba.com",
+    "aliyuncs.com"
+  ]
 }
